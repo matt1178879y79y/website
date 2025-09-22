@@ -9,7 +9,7 @@ export interface Order {
   createdAt: string;
   updatedAt: string;
   totalAmount: number;
-  paymentMethod: 'btc' | 'venmo';
+  paymentMethod: 'btc' | 'venmo' | 'cashapp';
   paymentStatus: 'pending' | 'confirmed' | 'failed';
   shippingAddress: {
     firstName: string;
