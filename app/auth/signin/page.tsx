@@ -32,13 +32,17 @@ const SignIn = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    
+    // Get redirect URL from query params
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect') || '/';
 
     try {
       const success = await login(formData.email, formData.password);
       if (success) {
         toast.success('Welcome back! Redirecting to home page...');
         setTimeout(() => {
-          router.push('/');
+          router.push(redirectUrl);
         }, 1000);
       } else {
         toast.error('Invalid email or password');

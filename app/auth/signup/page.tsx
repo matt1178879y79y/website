@@ -41,6 +41,10 @@ const SignUp = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Get redirect URL from query params
+    const urlParams = new URLSearchParams(window.location.search);
+    const redirectUrl = urlParams.get('redirect') || '/';
+    
     if (formData.password !== formData.confirmPassword) {
       toast.error('Passwords do not match');
       return;
@@ -58,7 +62,7 @@ const SignUp = () => {
       if (success) {
         toast.success('Account created successfully! Welcome to IDForge!');
         setTimeout(() => {
-          router.push('/');
+          router.push(redirectUrl);
         }, 1000);
       } else {
         toast.error('Failed to create account. Please try again.');
